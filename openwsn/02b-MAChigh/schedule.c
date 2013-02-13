@@ -77,10 +77,19 @@ void schedule_init() {
          TRUE,
          0,
          &temp_neighbor);
+  
+   i = 2;
+   memset(&temp_neighbor,0,sizeof(temp_neighbor));
+   temp_neighbor.type             = ADDR_ANYCAST;
+   schedule_addActiveSlot(i,
+         CELLTYPE_TXRX,
+         TRUE,
+         0,
+         &temp_neighbor);
    }
 
    // slot 2 is SERIALRX
-   i = 2;
+   i = 3;
    memset(&temp_neighbor,0,sizeof(temp_neighbor));
    schedule_addActiveSlot(i,
          CELLTYPE_SERIALRX,
@@ -89,7 +98,7 @@ void schedule_init() {
          &temp_neighbor);
 
    // slot 3 is MORESERIALRX
-   i = 3;
+   i = 4;
    memset(&temp_neighbor,0,sizeof(temp_neighbor));
    schedule_addActiveSlot(i,
          CELLTYPE_MORESERIALRX,
@@ -98,7 +107,7 @@ void schedule_init() {
          &temp_neighbor);
 
    // slot 4 is MORESERIALRX
-   i = 4;
+   i = 5;
    memset(&temp_neighbor,0,sizeof(temp_neighbor));
    schedule_addActiveSlot(i,
          CELLTYPE_MORESERIALRX,
@@ -610,7 +619,7 @@ void    schedule_addLinksToSchedule(uint8_t slotframeID,open_addr_t* previousHop
               FALSE,
               links[i].channelOffset,
               &temp_neighbor);
-            memset(&(links[0]),0,MAXACTIVESLOTS*sizeof(Link_t));
+              memset(&(links[i]),0,sizeof(Link_t));
             break;
           default:
           //log error
@@ -619,6 +628,7 @@ void    schedule_addLinksToSchedule(uint8_t slotframeID,open_addr_t* previousHop
       }
     }
   }
+  //memset(&(links[0]),0,MAXACTIVESLOTS*sizeof(Link_t));
 }
 
 void    schedule_allocateLinks(uint8_t slotframeID,uint8_t numOfLink,uint8_t bandwidth){

@@ -1404,8 +1404,7 @@ port_INLINE void activity_ri9(PORT_TIMER_WIDTH capturedTime) {
 port_INLINE bool isValidAdv(ieee802154_header_iht* ieee802514_header) {
    return ieee802514_header->valid==TRUE                                                              && \
           ieee802514_header->frameType==IEEE154_TYPE_BEACON                                           && \
-          packetfunctions_sameAddress(&ieee802514_header->panid,idmanager_getMyID(ADDR_PANID))        && \
-          ieee154e_vars.dataReceived->length==ADV_PAYLOAD_LENGTH;
+          packetfunctions_sameAddress(&ieee802514_header->panid,idmanager_getMyID(ADDR_PANID));
 }
 
 /**

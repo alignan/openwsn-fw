@@ -58,6 +58,9 @@ void    reservation_setuResBandwidth(uint8_t numOfLinks, uint8_t slotframeID){
 
 void    reservation_notifyReceiveuResLinkRequest(OpenQueueEntry_t* msg){
   
+  //qw : indicate receiving ResLinkRequest
+  leds_debug_toggle();
+  
   uResBandwidthIEcontent_t* tempBandwidthIE = processIE_getuResBandwidthIEcontent();
   //record bandwidth information
   reservation_vars.bandwidth_vars.numOfLinks  = tempBandwidthIE->numOfLinks;
@@ -99,6 +102,8 @@ void    reservation_notifyReceiveuResLinkResponse(OpenQueueEntry_t* msg){
     }
     
     reservation_vars.State = S_IDLE;
+    //qw: turn off yellow led when finish
+    leds_debug_toggle();
 }
 
 void    reservation_notifyReceiveRemoveLinkRequest(OpenQueueEntry_t* msg){
@@ -135,9 +140,13 @@ void    reservation_sendDone(OpenQueueEntry_t* msg, error_t error){
         break;
       case S_WAIT_RESLINKRESPONSE_SENDDONE:
         reservation_vars.State = S_IDLE;
+        //qw turn off yellow light when finish
+        leds_debug_toggle();
         break;
       case S_WAIT_REMOVELINKREQUEST_SENDDONE:
         reservation_vars.State = S_IDLE;
+        //qw turn off yellow light when finish
+        leds_debug_toggle();
         break;
       default:
         //log error
@@ -260,10 +269,11 @@ void reservation_linkRequest() {
 
 void  reservation_linkResponse(open_addr_t* tempNeighbor){
   
-  if(reservation_vars.State != S_RESLINKREQUEST_RECEIVE)
-    return;
-  
-  leds_debug_toggle();
+  //qw: seems useless
+  //if(reservation_vars.State != S_RESLINKREQUEST_RECEIVE)
+    //return;
+  //qw: move to when just receiving packet
+  //leds_debug_toggle();
   
   OpenQueueEntry_t* reservationPkt;
   
@@ -448,7 +458,7 @@ void isr_reservation_button() {
   case 0:
   case 1:
     //set slotframeID and bandwidth
-    reservation_setuResBandwidth(1,0);
+    reservation_setuResBandwidth(2,0);
   
     reservation_linkRequest();
     break;
@@ -461,4 +471,6 @@ void isr_reservation_button() {
   }
   
   reservation_vars.button_event += 1;
+  //reservation_vars.button_event = (reservation_vars.button_event+1)%3;
+  
 }
