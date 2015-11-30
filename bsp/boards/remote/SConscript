@@ -1,0 +1,19 @@
+import os
+
+Import('env')
+
+localEnv = env.Clone()
+
+source   = \
+    Glob('*.c') + \
+    Glob('source/*.c')
+
+localEnv.Append(
+    CPPPATH =  [
+        os.path.join('#','bsp','boards','remote','headers'),
+    ],
+)
+
+board  = localEnv.Object(source=source)
+
+Return('board')

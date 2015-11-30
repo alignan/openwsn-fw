@@ -200,10 +200,10 @@ elif env['toolchain']=='iar-proj':
     
 elif env['toolchain']=='armgcc':
     
-    if env['board'] not in ['OpenMote-CC2538','iot-lab_M3','iot-lab_A8-M3']:
+    if env['board'] not in ['OpenMote-CC2538','iot-lab_M3','iot-lab_A8-M3','remote']:
         raise SystemError('toolchain {0} can not be used for board {1}'.format(env['toolchain'],env['board']))
     
-    if   env['board']=='OpenMote-CC2538':
+    if env['board'] in ['OpenMote-CC2538', 'remote']:
         
         # compiler (C)
         env.Replace(CC           = 'arm-none-eabi-gcc')
@@ -542,7 +542,7 @@ def BootloadFunc():
             suffix      = '.phonyupload',
             src_suffix  = '.ihex',
         )
-    elif env['board']=='OpenMote-CC2538':
+    elif env['board'] in ['OpenMote-CC2538', 'remote']:
         return Builder(
             action      = OpenMoteCC2538_bootload,
             suffix      = '.phonyupload',
