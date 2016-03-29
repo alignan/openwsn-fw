@@ -49,7 +49,6 @@
 
 //===== pinout
 
-// [P4.7] radio SLP_TR_CNTL
 #define PORT_PIN_RADIO_SLP_TR_CNTL_HIGH()
 #define PORT_PIN_RADIO_SLP_TR_CNTL_LOW()
 // radio reset line

@@ -10,6 +10,9 @@
   <project>
     <path>$WS_DIR$\03oos_sniffer\03oos_sniffer.ewp</path>
   </project>
+  <project>
+    <path>$WS_DIR$\01bsp_leds\01bsp_leds.ewp</path>
+  </project>
   <batchBuild/>
 </workspace>
 
