@@ -2124,12 +2124,6 @@
           </file>
         </group>
         <file>
-          <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\adc_sensor.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\adc_sensor.h</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\board.c</name>
         </file>
         <file>

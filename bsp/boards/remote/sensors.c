@@ -5,7 +5,6 @@
 
 #include "board.h"
 #include "sensors.h"
-#include "adc_sensor.h"
 
 //=========================== defines =========================================
 
@@ -25,10 +24,6 @@ sensors_vars_t sensors_vars;
 void sensors_init(void) {
    
    memset(&sensors_vars,0,sizeof(sensors_vars_t));
-   
-   adc_sensor_init();
-   sensors_vars.sensorsTypes[SENSOR_ADCTEMPERATURE] = 1;
-   
 }
 
 /**
@@ -48,8 +43,6 @@ bool sensors_is_present(uint8_t sensorType) {
 callbackRead_cbt sensors_getCallbackRead(uint8_t sensorType) {
    
    switch (sensorType) {
-      case SENSOR_ADCTEMPERATURE:
-         return &adc_sens_read_temperature;
       default:
          return NULL;
    }
@@ -64,8 +57,6 @@ callbackRead_cbt sensors_getCallbackRead(uint8_t sensorType) {
 callbackConvert_cbt sensors_getCallbackConvert(uint8_t sensorType) {
    
    switch (sensorType) {
-      case SENSOR_ADCTEMPERATURE:
-         return &adc_sens_convert_temperature;
       default:
          return NULL;
    }
