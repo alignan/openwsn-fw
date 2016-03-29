@@ -26,14 +26,12 @@
 #include "flash.h"
 #include "i2c.h"
 #include "sensors.h"
+#include "button.h"
 
 //=========================== variables =======================================
 
 #define BSP_ANTENNA_BASE                ( GPIO_D_BASE )
 #define BSP_ANTENNA_PIN                 ( GPIO_PIN_2 )
-
-#define BSP_BUTTON_BASE                 ( GPIO_A_BASE )
-#define BSP_BUTTON_USER                 ( GPIO_PIN_3 )
 
 #define CC2538_FLASH_ADDRESS            ( 0x0027F800 )
 
@@ -49,14 +47,11 @@ bool board_timer_expired(uint32_t future);
 
 static void clock_init(void);
 static void gpio_init(void);
-static void button_init(void);
 
 static void SysCtrlDeepSleepSetting(void);
 static void SysCtrlSleepSetting(void);
 static void SysCtrlRunSetting(void);
 static void SysCtrlWakeupSetting(void);
-
-static void GPIO_C_Handler(void);
 
 //=========================== main ============================================
 
@@ -223,27 +218,6 @@ static void clock_init(void) {
     }
 }
 
-/**
- * Configures the user button as input source
- */
-static void button_init(void) {
-    volatile uint32_t i;
-
-    /* Delay to avoid pin floating problems */
-    for (i = 0xFFFF; i != 0; i--);
-
-    /* The button is an input GPIO on falling edge */
-    GPIOPinTypeGPIOInput(BSP_BUTTON_BASE, BSP_BUTTON_USER);
-    GPIOIntTypeSet(BSP_BUTTON_BASE, BSP_BUTTON_USER, GPIO_FALLING_EDGE);
-
-    /* Register the interrupt */
-    GPIOPortIntRegister(BSP_BUTTON_BASE, GPIO_C_Handler);
-
-    /* Clear and enable the interrupt */
-    GPIOPinIntClear(BSP_BUTTON_BASE, BSP_BUTTON_USER);
-    GPIOPinIntEnable(BSP_BUTTON_BASE, BSP_BUTTON_USER);
-}
-
 static void SysCtrlRunSetting(void) {
   /* Disable General Purpose Timers 0, 1, 2, 3 when running */
   SysCtrlPeripheralDisable(SYS_CTRL_PERIPH_GPT0);
@@ -269,7 +243,7 @@ static void SysCtrlRunSetting(void) {
 }
 
 static void SysCtrlSleepSetting(void) {
-  /* Disable General Purpose Timers 0, 1, 2, 3 during sleep */
+  /* Disable General Purpose Timers 0, 1 and 3 during sleep */
   SysCtrlPeripheralSleepDisable(SYS_CTRL_PERIPH_GPT0);
   SysCtrlPeripheralSleepDisable(SYS_CTRL_PERIPH_GPT1);
   SysCtrlPeripheralSleepDisable(SYS_CTRL_PERIPH_GPT3);
@@ -286,7 +260,7 @@ static void SysCtrlSleepSetting(void) {
   SysCtrlPeripheralSleepDisable(SYS_CTRL_PERIPH_PKA);
   SysCtrlPeripheralSleepDisable(SYS_CTRL_PERIPH_AES);
 
-  /* Enable UART and RFC during sleep */
+  /* Enable UART, GPT2 and RFC during sleep */
   SysCtrlPeripheralSleepEnable(SYS_CTRL_PERIPH_GPT2);
   SysCtrlPeripheralSleepEnable(SYS_CTRL_PERIPH_UART0);
   SysCtrlPeripheralSleepEnable(SYS_CTRL_PERIPH_RFC);
@@ -321,17 +295,4 @@ static void SysCtrlWakeupSetting(void) {
 
 //=========================== interrupt handlers ==============================
 
-/**
- * GPIO_C interrupt handler. User button is GPIO_C_3
- * Erases a Flash sector to trigger the bootloader backdoor
- */
-static void GPIO_C_Handler(void) {
-    /* Disable the interrupts */
-    IntMasterDisable();
 
-    /* Eras the CCA flash page */
-    FlashMainPageErase(CC2538_FLASH_ADDRESS);
-
-    /* Reset the board */
-    SysCtrlReset();
-}

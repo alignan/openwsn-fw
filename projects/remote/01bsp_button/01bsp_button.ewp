@@ -326,7 +326,7 @@
           <state>$PROJ_DIR$\..\..\..\bsp\boards\remote\</state>
           <state>$PROJ_DIR$\..\..\..\bsp\boards\remote\headers\</state>
           <state>$PROJ_DIR$\..\..\..\bsp\boards\remote\source\</state>
-          <state>$PROJ_DIR$\..\..\..\projects\common\01bsp_leds</state>
+          <state>$PROJ_DIR$\..\..\..\projects\remote\01bsp_button</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -613,7 +613,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state></state>
+          <state>01bsp_button.bin</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -667,7 +667,7 @@
         </option>
         <option>
           <name>IlinkOutputFile</name>
-          <state>01bsp_leds.out</state>
+          <state>01bsp_button.out</state>
         </option>
         <option>
           <name>IlinkDebugInfoEnable</name>
@@ -1898,7 +1898,7 @@
   <group>
     <name>application</name>
     <file>
-      <name>$PROJ_DIR$\..\..\common\01bsp_leds\01bsp_leds.c</name>
+      <name>$PROJ_DIR$\01bsp_button.c</name>
     </file>
   </group>
   <group>
@@ -1983,6 +1983,9 @@
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\headers\hw_usb.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\button.h</name>
           </file>
         </group>
         <group>
@@ -2155,6 +2158,12 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\uart.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\button.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\bsp\boards\remote\button.h</name>
         </file>
       </group>
       <file>
