@@ -7,9 +7,6 @@
 #ifndef BUTTON_H_
 #define BUTTON_H_
 
-#define BSP_BUTTON_BASE                 ( GPIO_A_BASE )
-#define BSP_BUTTON_USER                 ( GPIO_PIN_3 )
-
 /*---------------------------------------------------------------------------*/
 /**
  * \brief Initializes the user button

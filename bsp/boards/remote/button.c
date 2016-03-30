@@ -17,7 +17,7 @@
 #include "gptimer.h"
 #include "sys_ctrl.h"
 #include "interrupt.h"
-#include "button.h"
+#include "board_info.h"
 
 //=========================== variables =======================================
 

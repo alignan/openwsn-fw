@@ -100,7 +100,7 @@ void debugpins_radio_set() {
 
 //------------ private ------------//
 
-static void bspDBpinToggle(uint32_t base, uint8_t ui8Pin)
+void bspDBpinToggle(uint32_t base, uint8_t ui8Pin)
 {
     //
     // Get current pin values of selected bits

@@ -46,7 +46,30 @@
 /* UART interrupt */
 #define HAL_INT_PRIOR_UART      (5 << 5)
 
-//===== pinout
+//===== UART pin-out
+// This assumes PA0/PA1 and GPIO_A_BASE
+#define UART0_RXD_PIN_CONF    ( GPIO_PIN_0 )
+#define UART0_TXD_PIN_CONF    ( GPIO_PIN_1 )
+
+//===== LED pin-out
+
+#define LEDS_BASE_CONF        ( GPIO_D_BASE )
+#define LEDS_BLUE_PIN_CONF    ( GPIO_PIN_3 )
+#define LEDS_GREEN_PIN_CONF   ( GPIO_PIN_4 )
+#define LEDS_RED_PIN_CONF     ( GPIO_PIN_5 )
+
+//===== User button pin-out
+
+#define BSP_BUTTON_BASE       ( GPIO_A_BASE )
+#define BSP_BUTTON_USER       ( GPIO_PIN_3 )
+
+//===== I2C pin-out
+
+#define I2C_BASE_CONF    ( GPIO_C_BASE )
+#define I2C_SCL_CONF     ( GPIO_PIN_3 )
+#define I2C_SDA_CONF     ( GPIO_PIN_2 )
+
+//===== radio
 
 #define PORT_PIN_RADIO_SLP_TR_CNTL_HIGH()
 #define PORT_PIN_RADIO_SLP_TR_CNTL_LOW()

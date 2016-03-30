@@ -21,11 +21,12 @@
 #include "board.h"
 #include "ioc.h"
 #include "debugpins.h"
+#include "board_info.h"
 
 //=========================== defines =========================================
 
-#define PIN_UART_RXD            GPIO_PIN_0 // PA0 is UART RX
-#define PIN_UART_TXD            GPIO_PIN_1 // PA1 is UART TX
+#define PIN_UART_RXD            UART0_RXD_PIN_CONF
+#define PIN_UART_TXD            UART0_TXD_PIN_CONF
 
 //=========================== variables =======================================
 

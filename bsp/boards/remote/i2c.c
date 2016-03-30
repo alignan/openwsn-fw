@@ -10,6 +10,7 @@
 #include "source/i2c_lib.h"
 #include "ioc.h"
 #include "sys_ctrl.h"
+#include "board_info.h"
 
 #include "headers/hw_gpio.h"
 #include "headers/hw_i2cm.h"
@@ -21,9 +22,9 @@
 //=========================== define ==========================================
 
 #define I2C_PERIPHERAL          ( SYS_CTRL_PERIPH_I2C )
-#define I2C_BASE                ( GPIO_C_BASE )
-#define I2C_SCL                 ( GPIO_PIN_3 )
-#define I2C_SDA                 ( GPIO_PIN_2 )
+#define I2C_BASE                ( I2C_BASE_CONF )
+#define I2C_SCL                 ( I2C_SCL_CONF )
+#define I2C_SDA                 ( I2C_SDA_CONF )
 #define I2C_BAUDRATE            ( 100000 )
 #define I2C_MAX_DELAY_US        ( 100000 )
 

@@ -13,13 +13,14 @@
 #include "leds.h"
 #include "gpio.h"
 #include "board.h"
+#include "board_info.h"
 
 
 // Board LED defines
-#define BSP_LED_BASE            GPIO_D_BASE
-#define BSP_LED_1               GPIO_PIN_3
-#define BSP_LED_2               GPIO_PIN_4
-#define BSP_LED_3               GPIO_PIN_5
+#define BSP_LED_BASE            LEDS_BASE_CONF
+#define BSP_LED_1               LEDS_RED_PIN_CONF
+#define BSP_LED_2               LEDS_BLUE_PIN_CONF
+#define BSP_LED_3               LEDS_GREEN_PIN_CONF
 
 #define BSP_LED_ALL             (BSP_LED_1 | \
                                  BSP_LED_2 | \
@@ -41,7 +42,6 @@ void leds_init() {
     GPIOPinTypeGPIOOutput(BSP_LED_BASE, BSP_LED_ALL);
 	GPIOPinWrite(BSP_LED_BASE, BSP_LED_ALL, 0);
 }
-
 
 void    leds_error_on() {
 	bspLedSet(BSP_LED_1);
