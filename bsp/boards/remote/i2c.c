@@ -1,7 +1,8 @@
 /**
  * Author: Xavier Vilajosana (xvilajosana@eecs.berkeley.edu)
  *         Pere Tuset (peretuset@openmote.com)
- * Date:   July 2013
+ * Modified: Antonio Lignan (antonio.lignan@gmail.com)
+ * Date:   March 2016
  * Description:CC2538-specific definition of the "i2c" bsp module.
  */
 
@@ -20,9 +21,9 @@
 //=========================== define ==========================================
 
 #define I2C_PERIPHERAL          ( SYS_CTRL_PERIPH_I2C )
-#define I2C_BASE                ( GPIO_B_BASE )
+#define I2C_BASE                ( GPIO_C_BASE )
 #define I2C_SCL                 ( GPIO_PIN_3 )
-#define I2C_SDA                 ( GPIO_PIN_4 )
+#define I2C_SDA                 ( GPIO_PIN_2 )
 #define I2C_BAUDRATE            ( 100000 )
 #define I2C_MAX_DELAY_US        ( 100000 )
 
