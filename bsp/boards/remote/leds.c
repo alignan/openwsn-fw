@@ -1,7 +1,8 @@
 /**
  * Author: Xavier Vilajosana (xvilajosana@eecs.berkeley.edu)
  *         Pere Tuset (peretuset@openmote.com)
- * Date:   July 2013
+ * Modified: Antonio Lignan (antonio.lignan@gmail.com)
+ * Date: March 2016
  * Description: CC2538-specific definition of the "leds" bsp module.
  */
 

@@ -32,7 +32,6 @@
 #define PORT_SIGNED_INT_WIDTH               int32_t
 #define PORT_TICS_PER_MS                    33
 
-// on GINA, we use the comparatorA interrupt for the OS
 #define SCHEDULER_WAKEUP()
 #define SCHEDULER_ENABLE_INTERRUPT()
 

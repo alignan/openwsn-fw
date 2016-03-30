@@ -13,16 +13,18 @@
 #include "board.h"
 
 //=========================== defines =========================================
-// Board dbPINS defines
+// Board dbPINS defines, currently there's no pins assigned so ignore the above,
+// or define yourself based on your needs
+
 #define BSP_PINA_BASE           GPIO_A_BASE
 
-#define BSP_PINA_4              GPIO_PIN_4      //!< PA4 -- frame -RF1.5
-#define BSP_PINA_5              GPIO_PIN_5      //!< PA5 -- isr   -RF1.11
+#define BSP_PINA_4              GPIO_PIN_4
+#define BSP_PINA_5              GPIO_PIN_5
 
-#define BSP_PIND_3              GPIO_PIN_3      //!< PD3 -- slot  -RF1.6
-#define BSP_PIND_2              GPIO_PIN_2      //!< PD2 -- fsm   -RF1.8
-#define BSP_PIND_1              GPIO_PIN_1      //!< PD1 -- task  -RF1.10
-#define BSP_PIND_0              GPIO_PIN_0      //!< PD0 -- radio -RF1-12
+#define BSP_PIND_3              GPIO_PIN_3
+#define BSP_PIND_2              GPIO_PIN_2
+#define BSP_PIND_1              GPIO_PIN_1
+#define BSP_PIND_0              GPIO_PIN_0
 
 //=========================== variables =======================================
 
@@ -98,7 +100,7 @@ void debugpins_radio_set() {
 
 //------------ private ------------//
 
-void bspDBpinToggle(uint32_t base, uint8_t ui8Pin)
+static void bspDBpinToggle(uint32_t base, uint8_t ui8Pin)
 {
     //
     // Get current pin values of selected bits
